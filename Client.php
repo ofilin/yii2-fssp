@@ -83,7 +83,6 @@ class Client extends BaseClient
         }
 
         if (!isset($response['response']['task'])) {
-            var_dump($response);
             throw new ErrorException('Task id not received');
         }
         $task = $response['response']['task'];
@@ -93,6 +92,9 @@ class Client extends BaseClient
             $i++;
             sleep($this->retryTime);
             $resp_status = $this->call('/status', ['task' => $task]);
+            if (isset($resp_status["status"]) && $resp_status["status"] == "error") {
+                throw new ErrorException($resp_status["exception"]);
+            }
             $status = $resp_status["response"]["status"];
 
             if ($i >= $this->tryCount) {
