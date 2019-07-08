@@ -111,7 +111,7 @@ class Client extends BaseClient
         }
 
         if (count($response["response"]["result"]) == 1) {
-            $response["response"]["result"]["0"]["result"];
+            return $response["response"]["result"]["0"]["result"];
         }
 
         return $response["response"]["result"];
