@@ -11,7 +11,7 @@ use yii\httpclient\Client;
  */
 class BaseClient extends Component
 {
-    const API_BASE_URL = 'https://api-ip.fssprus.ru/api/v1.0';
+    const API_BASE_URL = 'https://api-ip.fssp.gov.ru/api/v1.0';
 
     public $token;
 
