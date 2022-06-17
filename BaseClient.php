@@ -60,6 +60,10 @@ class BaseClient extends Component
             ->setUrl($method)
             ->setData(array_merge($data, ['token' => $this->token]))
             ->send();
+        
+        if(!$response->isOk){
+            throw new \yii\httpclient\Exception('Error getting '.$method.'. With response code: '.$response->statusCode);
+        }
 
         return $response->data;
     }
